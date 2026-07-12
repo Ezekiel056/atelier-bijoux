@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajouter une création{% endblock %}
+
+{% block content %}
+    <div class="flex items-center justify-center p-6">
+        <div class="card w-full max-w-lg">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="font-butterfly-kids text-3xl font-thin text-(--color-primary-dark)">Ajouter une création</h1>
+                <a href="{{ path('app_admin') }}" class="font-comic-neue text-sm text-(--color-primary-darker) underline">Retour</a>
+            </div>
+
+            {{ form_start(creationForm, {attr: {class: 'flex flex-col gap-6'}}) }}
+                <div class="labeled-input">
+                    {{ form_label(creationForm.name, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(creationForm.name, {attr: {class: 'input'}}) }}
+                    <div class="error-label">{{ form_errors(creationForm.name) }}</div>
+                </div>
+
+                <div class="labeled-input">
+                    {{ form_label(creationForm.description, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(creationForm.description, {attr: {class: 'input'}}) }}
+                    <div class="error-label">{{ form_errors(creationForm.description) }}</div>
+                </div>
+
+                <div class="labeled-input">
+                    {{ form_label(creationForm.imageFile, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(creationForm.imageFile) }}
+                    <div class="error-label">{{ form_errors(creationForm.imageFile) }}</div>
+                </div>
+
+                <label class="flex items-center gap-2 font-comic-neue">
+                    {{ form_widget(creationForm.active) }}
+                    Active
+                </label>
+
+                <label class="flex items-center gap-2 font-comic-neue">
+                    {{ form_widget(creationForm.caroussel) }}
+                    Afficher dans le caroussel
+                </label>
+
+                <button class="btn w-full!" type="submit">
+                    Ajouter
+                </button>
+            {{ form_end(creationForm) }}
+        </div>
+    </div>
+{% endblock %}

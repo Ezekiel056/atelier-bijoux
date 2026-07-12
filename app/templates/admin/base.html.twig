@@ -1,0 +1,29 @@
+{% extends 'base_minimal.html.twig' %}
+
+{% block body %}
+    <header class="bg-(--color-primary-darker) text-white px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-4">
+            <p class="font-comic-neue font-bold text-sm sm:text-base m-0">
+                Espace admin
+            </p>
+
+            <a href="{{ path('app_home') }}" class="text-sm font-comic-neue underline underline-offset-2 hover:opacity-80 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                ← Retour au site
+            </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 text-sm font-comic-neue">
+            {% if app.user %}
+                <span>
+                    Connecté : <span class="font-bold break-all">{{ app.user.userIdentifier }}</span>
+                </span>
+            {% endif %}
+
+            <a href="{{ path('app_logout') }}" class="underline underline-offset-2 hover:opacity-80 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                Déconnexion
+            </a>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+{% endblock %}

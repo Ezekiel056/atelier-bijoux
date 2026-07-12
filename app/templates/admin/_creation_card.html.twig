@@ -1,0 +1,31 @@
+<div class="card flex gap-4">
+    <img src="/uploads/creations/{{ creation.image }}" alt="{{ creation.name }}" class="w-24 h-24 object-cover rounded-(--border-radius)">
+
+    <div class="flex flex-col gap-2 flex-1">
+        <p class="font-comic-neue font-bold">{{ creation.name }}</p>
+        <p class="font-comic-neue text-sm text-(--color-primary-darker)">{{ creation.description|length > 80 ? creation.description|slice(0, 80) ~ '…' : creation.description }}</p>
+
+        <div class="flex flex-wrap items-center gap-2 mt-auto">
+            <form method="post" action="{{ path('app_admin_creation_toggle_active', {id: creation.id}) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('toggle-active' ~ creation.id) }}">
+                <button type="submit" class="text-xs px-2 py-1 rounded-(--border-radius) border border-(--color-primary-darker) cursor-pointer">
+                    {{ creation.active ? 'Archiver' : 'Activer' }}
+                </button>
+            </form>
+
+            <form method="post" action="{{ path('app_admin_creation_toggle_caroussel', {id: creation.id}) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('toggle-caroussel' ~ creation.id) }}">
+                <button type="submit" class="text-xs px-2 py-1 rounded-(--border-radius) border cursor-pointer {{ creation.caroussel ? 'bg-(--color-primary) text-white border-(--color-primary)' : 'border-(--color-primary-darker)' }}">
+                    {{ creation.caroussel ? 'Dans le caroussel' : 'Hors caroussel' }}
+                </button>
+            </form>
+
+            <form method="post" action="{{ path('app_admin_creation_delete', {id: creation.id}) }}" data-turbo="false" onsubmit="return confirm('Supprimer cette création ?')">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creation.id) }}">
+                <button type="submit" class="text-xs px-2 py-1 rounded-(--border-radius) border border-red-300 text-red-700 cursor-pointer">
+                    Supprimer
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
