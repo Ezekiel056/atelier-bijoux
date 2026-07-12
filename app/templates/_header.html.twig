@@ -26,6 +26,13 @@
                 <a href="#contact" data-action="menu#close">Contact</a>
             </li>
         </ul>
+        {% if app.user %}
+            <ul>
+                <li>
+                    <a href={{ path('app_admin_login') }} data-action="menu#close">Admin</a>
+                </li>
+            </ul>
+        {% endif %}
     </nav>
     <div class="flex items-center justify-center md:hidden">
         <button type="button" data-menu-target="button" data-action="menu#toggle" aria-label="Menu" aria-expanded="false" class="flex flex-col justify-center gap-1.5  h-6 cursor-pointer w-8">

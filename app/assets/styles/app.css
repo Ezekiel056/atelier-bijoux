@@ -53,6 +53,11 @@ a {
     font-family: var(--font-comic-neue);
 }
 
+.error-label {
+    color: crimson;
+    font-weight: 500;
+}
+
 .labeled-input {
     @apply flex flex-col gap-2;
     input::placeholder {

@@ -21,6 +21,13 @@
                 <a href="#contact">Contact</a>
             </li>
         </ul>
+        {% if app.user %}
+            <ul>
+                <li>
+                    <a href={{ path('app_admin_login') }}>Admin</a>
+                </li>
+            </ul>
+        {% endif %}
     </nav>
     <p class="font-comic-neue">
         &copy; 2026 - L'Atelier Bijoux - Créations artisanales

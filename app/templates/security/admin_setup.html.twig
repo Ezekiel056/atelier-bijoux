@@ -1,0 +1,41 @@
+{% extends 'base_minimal.html.twig' %}
+
+{% block title %}Créer le compte admin{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="card w-full max-w-sm">
+            <div class="flex flex-col items-center gap-2 mb-6">
+                <img src="{{ asset('images/logo.png') }}" alt="logo-boutique" width="48" height="48">
+                <h1 class="font-butterfly-kids text-3xl font-thin text-(--color-primary-dark)">Créer le compte admin</h1>
+                <p class="font-comic-neue text-sm text-(--color-primary-darker) text-center">
+                    <span class="block">Aucun compte administrateur n'existe encore.</span> Créer le premier pour accéder à l'espace admin.
+                </p>
+            </div>
+
+            {{ form_start(setupForm, {attr: {class: 'flex flex-col gap-6'}}) }}
+                <div class="labeled-input">
+                    {{ form_label(setupForm.email, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(setupForm.email, {attr: {class: 'input'}}) }}
+                    {{ form_errors(setupForm.email) }}
+                </div>
+
+                <div class="labeled-input">
+                    {{ form_label(setupForm.plainPassword.first, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(setupForm.plainPassword.first, {attr: {class: 'input'}}) }}
+                    <div class="error-label">{{ form_errors(setupForm.plainPassword.first) }}</div>
+                </div>
+
+                <div class="labeled-input">
+                    {{ form_label(setupForm.plainPassword.second, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(setupForm.plainPassword.second, {attr: {class: 'input'}}) }}
+                    <div class="error-label">{{ form_errors(setupForm.plainPassword.second) }}</div>
+                </div>
+
+                <button class="btn w-full!" type="submit">
+                    Créer le compte
+                </button>
+            {{ form_end(setupForm) }}
+        </div>
+    </div>
+{% endblock %}

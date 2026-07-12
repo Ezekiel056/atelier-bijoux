@@ -10,6 +10,12 @@
                 <h1 class="font-butterfly-kids text-3xl font-thin text-(--color-primary-dark)">Espace admin</h1>
             </div>
 
+            {% for message in app.flashes('success') %}
+                <div class="mb-4 rounded-(--border-radius) border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-700">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             {% if error %}
                 <div class="mb-4 rounded-(--border-radius) border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
