@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "description": "Dev-only dependency so IDE tooling (Tailwind CSS IntelliSense/PhpStorm plugin) can resolve the tailwindcss package for autocompletion. Not used by the actual build, which relies on symfonycasts/tailwind-bundle's standalone binary.",
+    "devDependencies": {
+        "tailwindcss": "4.3.2"
+    }
+}

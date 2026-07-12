@@ -1,0 +1,5 @@
+.DS_Store
+.idea/
+
+# Docker volumes
+database/mysql/

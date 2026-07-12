@@ -1,0 +1,66 @@
+name: bandhub
+services:
+  # Service PHP avec Apache
+  php:
+    build:
+      context: ./php
+    container_name: ${COMPOSE_PROJECT_NAME}_php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - database
+
+  # Base de données MySQL
+  database:
+    image: mysql:8.0
+    container_name: ${COMPOSE_PROJECT_NAME}_database
+    environment:
+      MYSQL_DATABASE: appdata
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./database/mysql:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Service mail pour le développement
+  mailer:
+    image: axllent/mailpit
+    container_name: ${COMPOSE_PROJECT_NAME}_mailer
+    ports:
+      - "8025:8025" # Interface web
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+
+  # phpMyAdmin pour gérer MySQL
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: ${COMPOSE_PROJECT_NAME}_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: user
+      PMA_PASSWORD: userpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - database

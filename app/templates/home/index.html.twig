@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}L'atelier bijoux{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ importmap('home') }}
+{% endblock %}
+
+{% block body %}
+<div class="flex flex-col gap-12">
+    <article class="bloc-container flex flex-col gap-6 justify-center items-center">
+        <h1 class="hidden aria-hidden md:block md:aria-hidden:false text-center font-butterfly-kids text-5xl font-thin  text-(--color-primary-dark) ">
+            L'atelier bijoux
+        </h1>
+        <h2 class="font-butterfly-kids font-thin text-4xl text-center">Créatrice de bijoux en pierres naturelles</h2>
+        <p class="font-pacifico text-xl text-(--color-primary-darker) text-center">
+            Dans mon atelier, je créé des bijoux uniques en alliant pierres naturelles et recyclage de chambre à air
+        </p>
+
+        <button class="btn">
+            Découvrir
+        </button>
+    </article>
+
+    <div class="bloc-container bg-linear-to-b from-(--color-background) via-(--color-background-secondary) to-(--color-background)" data-controller="carousel">
+        <div class="carousel-stage" data-action="pointerdown->carousel#dragStart pointerup->carousel#dragEnd pointercancel->carousel#dragEnd">
+            <img data-carousel-target="slide" data-action="click->carousel#goTo" data-carousel-index-param="0" src="{{ asset('images/categories/hearings.png') }}" alt="Boucles d'oreilles" class="carousel-slide">
+            <img data-carousel-target="slide" data-action="click->carousel#goTo" data-carousel-index-param="1" src="{{ asset('images/categories/bracelets.png') }}" alt="Bracelets" class="carousel-slide">
+            <img data-carousel-target="slide" data-action="click->carousel#goTo" data-carousel-index-param="2" src="{{ asset('images/categories/life_path.png') }}" alt="Chemins de vie" class="carousel-slide">
+            <img data-carousel-target="slide" data-action="click->carousel#goTo" data-carousel-index-param="3" src="{{ asset('images/categories/pendants.png') }}" alt="Pendentifs" class="carousel-slide">
+        </div>
+
+        <div class="flex justify-center gap-4 mt-4">
+            <button type="button" data-action="carousel#prev" aria-label="Précédent" class="carousel-nav">‹</button>
+            <button type="button" data-action="carousel#next" aria-label="Suivant" class="carousel-nav">›</button>
+        </div>
+    </div>
+
+
+    <article class="bloc-container flex flex-col gap-6 justify-center items-center">
+        <h2 class="font-butterfly-kids font-thin text-4xl text-center">Mes créations</h2>
+        <p class="font-pacifico text-xl text-(--color-primary-darker) text-center">
+            Façconnées avec passion pour révéler votre beauté naturelle.
+        </p>
+
+        <div class="grid grid-cols-1 w-full gap-4 md:grid-cols-2 xl:self-center xl:max-w-5xl">
+            <div class="categories hearings">
+                <a href={{ path('app_home') }} class="text-2xl">
+                    Boucles d'oreilles
+                </a>
+            </div>
+
+            <div class="categories bracelets">
+                <a href={{ path('app_home') }} class="text-2xl">
+                    Bracelets
+                </a>
+            </div>
+
+            <div class="categories life-path">
+                <a href={{ path('app_home') }} class="text-2xl">
+                    Chemins de vie
+                </a>
+            </div>
+
+            <div class="categories pendants">
+                <a href={{ path('app_home') }} class="text-2xl">
+                    Pendentifs
+                </a>
+            </div>
+        </div>
+    </article>
+
+
+    <article class="bloc-container flex flex-col gap-6 justify-center items-center bg-linear-to-b from-(--color-background) via-(--color-background-secondary) to-(--color-background)">
+        <h2 class="font-butterfly-kids font-thin text-4xl text-center text-(--color-primary-dark)">Me contacter</h2>
+        <p class="font-comic-neue text-lg text-(--color-primary-darker) text-center">
+            <span class="block">Une envie particulière ?</span>
+            N'hésitez pas à me contacter pour en discuter ensemble.
+        </p>
+
+        <div class="card w-full md:max-w-3xl" id="contact">
+            {{ form_start(contactForm, {attr: {class: 'flex flex-col gap-6 w-full '}}) }}
+                <div class="labeled-input ">
+                    {{ form_label(contactForm.name, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(contactForm.name, {attr: {class: 'input', placeholder:'Ex: Amélie'    }}) }}
+                    {{ form_errors(contactForm.name) }}
+                </div>
+
+                <div class="labeled-input ">
+                    {{ form_label(contactForm.email, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(contactForm.email, {attr: {class: 'input', placeholder:'mone@mail.com'}}) }}
+                    {{ form_errors(contactForm.email) }}
+                </div>
+
+                <div class="labeled-input ">
+                    {{ form_label(contactForm.subject, null, {label_attr: {class: 'label'}}) }}
+                    {{ form_widget(contactForm.subject, {attr: {class: 'input', placeholder:'Bonjour, ...'}}) }}
+                    {{ form_errors(contactForm.subject) }}
+                </div>
+
+                <button type="submit" class="btn self-center w-full!">
+                    Envoyer
+                </button>
+            {{ form_end(contactForm) }}
+        </div>
+
+    </article>
+</div>
+
+{% endblock %}

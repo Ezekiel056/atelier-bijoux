@@ -1,0 +1,88 @@
+.categories {
+
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 250px;
+    color: #fff;
+    font-family: var(--font-pacifico);
+
+    background-size: cover;
+    background-position: center;
+
+    &.hearings {
+        background-image: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-primary-darker) 80%, transparent) 100%), url("../images/categories/hearings.png");
+    }
+
+    &.bracelets {
+        background-image: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-primary-darker) 80%, transparent) 100%), url("../images/categories/bracelets.png");
+    }
+
+    &.life-path {
+        background-image: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-primary-darker) 80%, transparent) 100%), url("../images/categories/life_path.png");
+    }
+
+    &.pendants {
+        background-image: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-primary-darker) 80%, transparent) 100%), url("../images/categories/pendants.png");
+    }
+
+    a {
+        display: flex;
+        align-items: end;
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+    }
+}
+
+.carousel-stage {
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+    touch-action: pan-y;
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 65%;
+    max-width: 380px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+    transform: translateX(calc(var(--offset) * 55%)) scale(calc(1 - var(--abs-offset) * 0.15));
+    z-index: calc(10 - var(--abs-offset));
+    opacity: calc(1 - var(--abs-offset) * 0.4);
+
+    &[data-active="true"] {
+        cursor: default;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.carousel-nav {
+    background-color: #fff;
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    color: var(--color-primary-darker);
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}

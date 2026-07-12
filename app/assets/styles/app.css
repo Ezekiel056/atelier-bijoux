@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+    --font-pacifico: "Pacifico", cursive;
+    --font-butterfly-kids: "Butterfly Kids", cursive;
+    --font-comic-neue: "Comic Neue", cursive;
+}
+
+:root {
+    --color-primary: #72B900;
+    --color-primary-light: #D9DDCE;
+    --color-primary-dark: #3F6900;
+    --color-primary-darker: #414936;
+
+    --color-background : #F9F9F7;
+    --color-background-secondary : #F9F4E6;
+
+    --border-radius : 12px;
+    --border-radius-xl : 24px;
+
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bloc-container {
+    padding: 24px 12px;
+    width: 100%;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #E2E3E1;
+    border-radius: var(--border-radius);
+    padding: 24px;
+}
+
+.input {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-primary-light);
+    padding: 8px 12px;
+    background-color: #E6E6E6;
+}
+
+.label {
+    font-weight: bold;
+    font-family: var(--font-comic-neue);
+}
+
+.labeled-input {
+    @apply flex flex-col gap-2;
+    input::placeholder {
+        color: var(--color-primary-darker);
+        font-size: .9em;
+    }
+}
+
+.btn {
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-xl);
+    padding: 6px 24px;
+    color: #fff;
+    font-family: var(--font-comic-neue);
+    box-shadow: 2px 2px 3px #72B900;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    &:hover {
+        box-shadow: 2px 2px 5px #72B900;
+        transform: translateY(-1px);
+
+    }
+    &:active {
+        transform: translateY(0px);
+        box-shadow: 2px 2px 3px #72B900;
+    }
+
+}
+
+
+@media (min-width:768px) {
+    .bloc-container {
+        padding: 24px 48px;
+
+    }
+}
