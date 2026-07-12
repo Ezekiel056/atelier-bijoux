@@ -1,0 +1,38 @@
+{% extends 'base_minimal.html.twig' %}
+
+{% block title %}Connexion admin{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="card w-full max-w-sm">
+            <div class="flex flex-col items-center gap-2 mb-6">
+                <img src="{{ asset('images/logo.png') }}" alt="logo-boutique" width="48" height="48">
+                <h1 class="font-butterfly-kids text-3xl font-thin text-(--color-primary-dark)">Espace admin</h1>
+            </div>
+
+            {% if error %}
+                <div class="mb-4 rounded-(--border-radius) border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form method="post" class="flex flex-col gap-6">
+                <div class="labeled-input">
+                    <label for="username" class="label">Email</label>
+                    <input type="email" value="{{ last_username }}" name="_username" id="username" class="input" autocomplete="email" required autofocus>
+                </div>
+
+                <div class="labeled-input">
+                    <label for="password" class="label">Mot de passe</label>
+                    <input type="password" name="_password" id="password" class="input" autocomplete="current-password" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                <button class="btn w-full!" type="submit">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

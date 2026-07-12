@@ -1,4 +1,4 @@
-name: bandhub
+name: atelier-bijoux
 services:
   # Service PHP avec Apache
   php:

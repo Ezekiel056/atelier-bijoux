@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href={{ asset('/images/logo.png') }}>
-        {% block stylesheets %}
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Butterfly+Kids&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-        {% endblock %}
+{% extends 'base_minimal.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-
-{#        {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}#}
-{#        {% if frankenphpHotReload %}#}
-{#        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">#}
-{#        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>#}
-{#        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>#}
-{#        {% endif %}#}
-    </head>
-    <body class="bg-(--color-background)">
-        {% include('_header.html.twig') %}
-        <main class="">
-            {% block body %}{% endblock %}
-        </main>
-        {% include('_footer.html.twig') %}
-
-    </body>
-</html>
+{% block body %}
+    {% include('_header.html.twig') %}
+    <main class="">
+        {% block content %}{% endblock %}
+    </main>
+    {% include('_footer.html.twig') %}
+{% endblock %}

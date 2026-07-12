@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href={{ asset('/images/logo.png') }}>
+        {% block stylesheets %}
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Butterfly+Kids&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="bg-(--color-background)">
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+    </body>
+</html>
